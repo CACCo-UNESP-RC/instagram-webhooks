@@ -5,4 +5,4 @@ RUN python -m venv venv
 RUN venv/bin/pip install --upgrade pip
 RUN venv/bin/pip install -r requirements.txt
 COPY main.py .
-CMD ["venv/bin/python", "main.py"]
+# CMD ["venv/bin/python", "main.py"]
