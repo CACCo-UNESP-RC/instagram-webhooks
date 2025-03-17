@@ -12,3 +12,6 @@ services:
       - webhooks
     env_file:
       - stack.env
+networks:
+  webhooks:
+    external: true
