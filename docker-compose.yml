@@ -7,7 +7,7 @@ services:
       - .:/app
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
-    command: ["python", "relatorio-alerta.py"]
+    command: ["python", "main.py"]
     networks:
       - webhooks
     env_file:
