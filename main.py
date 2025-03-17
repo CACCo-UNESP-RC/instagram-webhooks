@@ -24,14 +24,14 @@ logging.basicConfig(
 STORIES_FOLDER = Path("stories")
 MARKED_STORIES_DATA_FOLDER = Path("marked_stories_data")
 MARKED_POSTS_DATA_FOLDER = Path("marked_posts_data")
-WEBHOOK_URL_1 = os.getenv("DISCORD_WEBHOOK_URL_1")
-WEBHOOK_URL_2 = os.getenv("DISCORD_WEBHOOK_URL_2")
+WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+TARGET_USERNAME = os.getenv("TARGET_USERNAME")
 CONFIG_FILE = Path("configs.json")
 
 ACCOUNT_USERNAME = os.getenv("INSTAGRAM_USERNAME")
 ACCOUNT_PASSWORD = os.getenv("INSTAGRAM_PASSWORD")
 
-if not all([ACCOUNT_USERNAME, ACCOUNT_PASSWORD, WEBHOOK_URL_1, WEBHOOK_URL_2]):
+if not all([ACCOUNT_USERNAME, ACCOUNT_PASSWORD, WEBHOOK_URL]):
     raise EnvironmentError(
         "Please set INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD, and DISCORD_WEBHOOK_URL_1 environment variables."
     )
@@ -52,17 +52,7 @@ def save_config(config: dict) -> None:
 
 
 def get_webhook_url() -> str:
-    config = load_config()
-    webhook_counter = config.get("webhook_counter", 0)
-
-    if webhook_counter > 1:
-        webhook_counter = 0
-
-    webhook_url = WEBHOOK_URL_1 if webhook_counter % 2 == 0 else WEBHOOK_URL_2
-    config["webhook_counter"] = webhook_counter + 1
-    save_config(config)
-    return webhook_url
-
+    return WEBHOOK_URL
 
 def ensure_folder(folder: Path) -> None:
     if not folder.exists():
@@ -212,7 +202,7 @@ def forward_posts(
 
     # Reverse the list to process from oldest to newest
     reversed_new_posts = reversed(new_posts)
-
+    cl.post
     for media in reversed_new_posts:
         try:
             post_url = f"https://www.instagram.com/p/{media.code}/"
@@ -275,5 +265,4 @@ if __name__ == "__main__":
             logging.error("Failed to log in.")
             exit(1)
 
-    target_username = input("Enter Instagram username target: ")
-    main(target_username)
+    main(TARGET_USERNAME)

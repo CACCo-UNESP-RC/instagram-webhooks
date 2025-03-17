@@ -1,3 +1,6 @@
+
+Small fork for docker compose use and .env target username use
+
 <p align="center"><h1 align="center">INSTAGRAM-FORWARDER</h1></p>
 
 <p align="center">
