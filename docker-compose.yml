@@ -9,9 +9,7 @@ services:
         RUN pip install -r requirements.txt
         COPY main.py .
     restart: always
-    # working_dir: /app
     volumes:
-      # - .:/app
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     command: ["python", "main.py"]
