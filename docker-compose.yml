@@ -19,6 +19,8 @@ services:
       - webhooks
     env_file:
       - stack.env
+    stdin_open: true 
+    tty: true
 networks:
   webhooks:
     external: true
