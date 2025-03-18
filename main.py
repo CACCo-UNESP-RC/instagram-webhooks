@@ -202,7 +202,6 @@ def forward_posts(
 
     # Reverse the list to process from oldest to newest
     reversed_new_posts = reversed(new_posts)
-    cl.post
     for media in reversed_new_posts:
         try:
             post_url = f"https://www.instagram.com/p/{media.code}/"
